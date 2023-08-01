@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewBag.Title = "DangKi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: black;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Add padding to containers */
+        .container {
+            padding: 16px;
+            background-color: white;
+        }
+
+        /* Full-width input fields */
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+            input[type=text]:focus, input[type=password]:focus {
+                background-color: #ddd;
+                outline: none;
+            }
+
+        /* Overwrite default styles of hr */
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+
+        /* Set a style for the submit button */
+        .registerbtn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+
+            .registerbtn:hover {
+                opacity: 1;
+            }
+
+        /* Add a blue text color to links */
+        a {
+            color: dodgerblue;
+        }
+
+        /* Set a grey background color and center the text of the "sign in" section */
+        .signin {
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    
+        <div class="container">
+            <h1 style="text-align:center";>Đăng Kí</h1>
+            <p style="text-align:center">
+                nhap thong tin.</pstyle="text-align:center">
+                <hr>
+
+                <label for="HoTen"><b>HoTen</b></label>
+                <input type="text" placeholder="Nhap  HoTen" name="HoTen" id="HoTen" required><br />
+
+                <label for="NgaySinh"><b>NgaySinh</b></label>
+                <input type="date" placeholder="Nhap  NgaySinh" name="NgaySinh" id="NgaySinh" required><br />
+
+                <label for="DiaChi"><b>DiaChi</b></label>
+                <input type="text" placeholder="Nhap  DiaChi" name="DiaChi" id="DiaChi" required><br />
+
+                <label for="GioiTinh"><b>GioiTinh</b></label>
+                <input type="text" placeholder="Nhap  GioiTinh" name="GioiTinh" id="GioiTinh" required><br />
+
+                <label for="HoTen"><b>SoDT</b></label>
+                <input type="text" placeholder="Nhap  SoDT" name="SoDT" id="SoDT" required><br />
+
+                <label for="TaiKhoan"><b>TaiKhoan</b></label>
+                <input type="text" placeholder="Nhap  TaiKhoan" name="TaiKhoan" id="TaiKhoan" required><br />
+
+                <label for="MatKhau"><b>TaiKhoan</b></label>
+                <input type="text" placeholder="Nhap  MatKhau" name="MatKhau" id="MatKhau" required><br />
+
+                <hr>
+<p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+
+            <button type="button" onclick="Save()" class="registerbtn">Register</button>
+        </div>
+
+        <div class="container signin">
+            <p>Already have an account? <a href="#">Sign in</a>.</p>
+        </div>
+  
+
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+
+    function Save() {
+        debugger
+        var name = $('#HoTen').val(); // dsesdedeeded
+        var date = $('#NgaySinh').val();
+        var address = $('#DiaChi').val();
+        var sex = $('#GioiTinh').val();
+        var number = $('#SoDT').val();
+        var uname = $('#TaiKhoan').val();
+        var pwd = $('#MatKhau').val();
+
+        $.ajax({
+            type: 'POST',
+            url: '/Home/SaveData',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ name: name, date: date, address: address, sex: sex, number: number, uname: uname, pwd: pwd}),
+            dataType: 'json',
+            success: function (response) {
+                console.log(response)
+            },
+            error: function (response) {
+                console.log(787787787)
+            }
+        });
+    }
+
+    
+</script>
