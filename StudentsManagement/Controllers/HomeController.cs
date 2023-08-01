@@ -13,30 +13,7 @@ namespace StudentsManagement.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(string email, string password)
-        {
-            if (ModelState.IsValid)
-            {
-
-
-              
-                var data = DBConection.Account.Where(s => s.Email.Equals(uname) && s.Password.Equals(password)).ToList();
-                if (data.Count() > 0)
-                {
-                    //add session
-                    Session["FullName"] = data.FirstOrDefault().FirstName + " " + data.FirstOrDefault().LastName;
-                    Session["Email"] = data.FirstOrDefault().Email;
-                    Session["idUser"] = data.FirstOrDefault().idUser;
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    ViewBag.error = "Login failed";
-                    return RedirectToAction("Login");
-                }
-            }
-            return View();
-        }
+       
 
 
         public ActionResult DangNhap()
